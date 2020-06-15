@@ -10,3 +10,15 @@
 /Users/vadim/Desktop/MainAcademyC-/Lesson3/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.dll
 /Users/vadim/Desktop/MainAcademyC-/Lesson3/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.pdb
 /Users/vadim/Desktop/MainAcademyC-/Lesson3/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.genruntimeconfig.cache
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/bin/Debug/netcoreapp3.1/MainAcademy.deps.json
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/bin/Debug/netcoreapp3.1/MainAcademy.runtimeconfig.json
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/bin/Debug/netcoreapp3.1/MainAcademy.runtimeconfig.dev.json
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/bin/Debug/netcoreapp3.1/MainAcademy.dll
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/bin/Debug/netcoreapp3.1/MainAcademy.pdb
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.csprojAssemblyReference.cache
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.AssemblyInfoInputs.cache
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.AssemblyInfo.cs
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.csproj.CoreCompileInputs.cache
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.dll
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.pdb
+/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/Debug/netcoreapp3.1/MainAcademy.genruntimeconfig.cache

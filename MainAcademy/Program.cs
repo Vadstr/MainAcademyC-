@@ -8,12 +8,12 @@ namespace MainAcademy
         {
 
             bool[] bla = { true, true, true, true};
-            string[] obj = { "v", "g", "c", "f"};
+            string[] obj = { "w", "g", "c", "f"};
 
             do
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Who next? \nv, g, c, f \n");
+                Console.WriteLine("Who next? \nw, g, c, f \n");
                 Console.ResetColor();
 
                 for (int i = 0; i < 4; i++)
@@ -43,7 +43,7 @@ namespace MainAcademy
                         case "c":
                             bla[2] = !bla[2];
                             break;
-                        case "v":
+                        case "w":
                             bla[0] = !bla[0];
                             break;
                         case "g":
@@ -99,11 +99,11 @@ namespace MainAcademy
         {
             if (bla[index] == true)
             {
-                Console.WriteLine("|" + obj[index] + "|  | |");
+                Console.WriteLine("|'{0}'|  |   |", obj[index]);
             }
             else
             {
-                Console.WriteLine("| |  |" + obj[index] + "|");
+                Console.WriteLine("|   |  |'{0}'|", obj[index]);
             }
         }
     }
