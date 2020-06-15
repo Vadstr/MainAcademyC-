@@ -1,0 +1,6 @@
+/Users/vadim/Desktop/MainAcademyC-/PrimitiveCalculator/Lesson3HW/bin/Debug/Lesson3HW.exe
+/Users/vadim/Desktop/MainAcademyC-/PrimitiveCalculator/Lesson3HW/bin/Debug/Lesson3HW.pdb
+/Users/vadim/Desktop/MainAcademyC-/PrimitiveCalculator/Lesson3HW/obj/Debug/Lesson3HW.csprojAssemblyReference.cache
+/Users/vadim/Desktop/MainAcademyC-/PrimitiveCalculator/Lesson3HW/obj/Debug/Lesson3HW.csproj.CoreCompileInputs.cache
+/Users/vadim/Desktop/MainAcademyC-/PrimitiveCalculator/Lesson3HW/obj/Debug/Lesson3HW.exe
+/Users/vadim/Desktop/MainAcademyC-/PrimitiveCalculator/Lesson3HW/obj/Debug/Lesson3HW.pdb
