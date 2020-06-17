@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/vadim/Desktop/MainAcademyC-/MainAcademy/MainAcademy.csproj": {}
+    "/Users/vadim/Desktop/MainAcademyC-/GameAboutFermer/MainAcademy/MainAcademy.csproj": {}
   },
   "projects": {
-    "/Users/vadim/Desktop/MainAcademyC-/MainAcademy/MainAcademy.csproj": {
+    "/Users/vadim/Desktop/MainAcademyC-/GameAboutFermer/MainAcademy/MainAcademy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vadim/Desktop/MainAcademyC-/MainAcademy/MainAcademy.csproj",
+        "projectUniqueName": "/Users/vadim/Desktop/MainAcademyC-/GameAboutFermer/MainAcademy/MainAcademy.csproj",
         "projectName": "MainAcademy",
-        "projectPath": "/Users/vadim/Desktop/MainAcademyC-/MainAcademy/MainAcademy.csproj",
+        "projectPath": "/Users/vadim/Desktop/MainAcademyC-/GameAboutFermer/MainAcademy/MainAcademy.csproj",
         "packagesPath": "/Users/vadim/.nuget/packages/",
-        "outputPath": "/Users/vadim/Desktop/MainAcademyC-/MainAcademy/obj/",
+        "outputPath": "/Users/vadim/Desktop/MainAcademyC-/GameAboutFermer/MainAcademy/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

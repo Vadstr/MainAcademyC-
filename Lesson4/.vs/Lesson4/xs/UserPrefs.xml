@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{097F3943-B603-4BAC-B724-35DD55342EA1}|Default">
+  <MonoDevelop.Ide.ItemProperties.Lesson4 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Lesson4/Computer.cs">
+    <Files>
+      <File FileName="Lesson4/Program.cs" Line="13" Column="15" />
+      <File FileName="Lesson4/Computer.cs" Line="13" Column="22" />
+      <File FileName="Lesson4/EmptyEnumeration.cs" Line="9" Column="11" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Lesson4" expanded="True">
+            <Node name="Lesson4" expanded="True">
+              <Node name="Computer.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|anycpu" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
