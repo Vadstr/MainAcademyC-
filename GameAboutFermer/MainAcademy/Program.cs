@@ -6,9 +6,8 @@ namespace MainAcademy
     {
         static void Main(string[] args)
         {
-
-            bool[] bla = { true, true, true, true};
-            string[] obj = { "w", "g", "c", "f"};
+            bool[] bla = { true, true, true, true };
+            string[] obj = { "w", "g", "c", "f" };
 
             do
             {
@@ -26,7 +25,7 @@ namespace MainAcademy
                 string choice = Console.ReadLine();
                 bool j = false;
                 bool inside = false;
-                for (int a = 0; a<obj.Length; a++)
+                for (int a = 0; a < obj.Length; a++)
                 {
                     if (obj[a] == choice)
                     {

@@ -1,9 +1,5 @@
 ﻿using lab4.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab4
 {
@@ -20,6 +16,9 @@ namespace lab4
                 new Computer(ComputerType.Laptop),
                 new Computer(ComputerType.Laptop),
                 new Computer(ComputerType.Server)
+                {
+                    HDD = 5000
+                }
             };
 
             departments[1] = new Computer[3]
@@ -27,6 +26,9 @@ namespace lab4
                 new Computer(ComputerType.Laptop),
                 new Computer(ComputerType.Laptop),
                 new Computer(ComputerType.Laptop)
+                {
+                    CPUCores = 1, CPUFrequency = 2.0
+                }
             };
 
             departments[2] = new Computer[5]
@@ -36,6 +38,9 @@ namespace lab4
                 new Computer(ComputerType.Desktop),
                 new Computer(ComputerType.Laptop),
                 new Computer(ComputerType.Laptop)
+                {
+                    CPUFrequency = 1.0
+                }
             };
 
             departments[3] = new Computer[4]
@@ -49,16 +54,21 @@ namespace lab4
             int desktopCount = 0;
             int laptopCount = 0;
             int serverCount = 0;
-            int largHDD = 0;
-            double lowestCPUPower = 0;
+
+            int largHDD = int.MinValue;
             var typeComputerWithLargeHDD = ComputerType.Desktop;
             int qualityOfLargHDD = 0;
+
+            double lowestCPUPower = double.MaxValue;
             int qualityLargeCPUPower = 0;
             var typeComputerWithBestCPU = ComputerType.Desktop;
             double CPUCores = 0;
             double CPUGHZ = 0;
 
-            
+            int largRAM = int.MaxValue;
+            var typeComputerWithLowestRAM = ComputerType.Desktop;
+            int qualityOfLowestRAM = 0;
+
             for (int i = 0; i < departments.Length; i++)
             {
                 Console.WriteLine($"Department {i}:");
@@ -66,7 +76,7 @@ namespace lab4
                 {
                     if (departments[i][j].ComputerType == ComputerType.Desktop && upgrade)
                     {
-                        departments[i][j].RAM += 8;
+                        departments[i][j].RAM = 8;
                     }
                     Console.Write($"{departments[i][j].ComputerType}:RAM {departments[i][j].RAM}GGB ");
                 }
@@ -90,11 +100,6 @@ namespace lab4
                         qualityOfLargHDD++;
                     }
 
-                    if (lowestCPUPower == 0)
-                    {
-                        lowestCPUPower = computer.CPUCores * computer.CPUFrequency;
-                    }
-
                     if (computer.CPUCores * computer.CPUFrequency == lowestCPUPower)
                     {
                         qualityLargeCPUPower++;
@@ -106,6 +111,17 @@ namespace lab4
                         typeComputerWithBestCPU = computer.ComputerType;
                         lowestCPUPower = computer.CPUCores * computer.CPUFrequency;
                         qualityLargeCPUPower = 1;
+                    }
+
+                    if (computer.RAM < largRAM)
+                    {
+                        typeComputerWithLowestRAM = computer.ComputerType;
+                        largRAM = computer.RAM;
+                        qualityOfLowestRAM = 1;
+                    }
+                    else if (computer.RAM == largRAM)
+                    {
+                        qualityOfLowestRAM++;
                     }
 
                     switch (computer.ComputerType)
@@ -130,7 +146,8 @@ namespace lab4
             Console.WriteLine($"Server: {serverCount}");
             Console.WriteLine($"Total count: {desktopCount + laptopCount + serverCount}");
             Console.WriteLine($"Qyality computer whith large HDD: {qualityOfLargHDD}. And it`s {typeComputerWithLargeHDD} with {largHDD}GGB storage");
-            Console.WriteLine($"Qyality computer whith lowest CPU power: {qualityLargeCPUPower}. And it`s {typeComputerWithBestCPU} with {CPUCores} cores and {CPUGHZ}GHZ\n");
+            Console.WriteLine($"Qyality computer whith lowest CPU power: {qualityLargeCPUPower}. And it`s {typeComputerWithBestCPU} with {CPUCores} cores and {CPUGHZ}GHZ");
+            Console.WriteLine($"Qyality computer whith lowest CPU power: {qualityOfLowestRAM}. And it`s {typeComputerWithLowestRAM} with {largRAM}GGB RAM\n");
             if (!upgrade)
             {
                 upgrade = true;

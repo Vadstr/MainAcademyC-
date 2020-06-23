@@ -1,14 +1,14 @@
-﻿<Properties StartupConfiguration="{32788748-CA54-4915-8F2D-7190734F2FC4}|Default">
-  <MonoDevelop.Ide.ItemProperties.MainAcademy PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MainAcademy/Program.cs">
+﻿<Properties StartupConfiguration="{183996BC-1F9F-4347-898C-A5A9E9CE462D}|Default">
+  <MonoDevelop.Ide.ItemProperties.Lab5 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Lab5/Program.cs">
     <Files>
-      <File FileName="MainAcademy/Program.cs" Line="16" Column="17" />
+      <File FileName="Lab5/Program.cs" Line="56" Column="57" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Lesson3" expanded="True">
-            <Node name="MainAcademy" expanded="True">
+          <Node name="Lab5" expanded="True">
+            <Node name="Lab5" expanded="True">
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
@@ -17,7 +17,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|anycpu" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

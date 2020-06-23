@@ -1,0 +1,6 @@
+/Users/vadim/Desktop/MainAcademyC-/Lab5/Lab5/bin/Debug/Lab5.exe
+/Users/vadim/Desktop/MainAcademyC-/Lab5/Lab5/bin/Debug/Lab5.pdb
+/Users/vadim/Desktop/MainAcademyC-/Lab5/Lab5/obj/Debug/Lab5.csprojAssemblyReference.cache
+/Users/vadim/Desktop/MainAcademyC-/Lab5/Lab5/obj/Debug/Lab5.csproj.CoreCompileInputs.cache
+/Users/vadim/Desktop/MainAcademyC-/Lab5/Lab5/obj/Debug/Lab5.exe
+/Users/vadim/Desktop/MainAcademyC-/Lab5/Lab5/obj/Debug/Lab5.pdb
