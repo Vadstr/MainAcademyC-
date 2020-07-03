@@ -65,7 +65,7 @@ namespace MainAcademy
                     Console.WriteLine("\n Wrong input, try again \n");
                     Console.ResetColor();
                 }
-
+                Console.Clear();
                 if ((bla[1] == !bla[3] && bla[0] == !bla[3]) || (bla[1] == !bla[3] && bla[2] == !bla[3]))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
