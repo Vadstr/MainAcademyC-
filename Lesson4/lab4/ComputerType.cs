@@ -1,6 +1,6 @@
 ﻿namespace lab4.Enums
 {
-    enum ComputerType : byte
+    enum ComputerType 
     {
         Desktop,
         Laptop,

@@ -4,30 +4,37 @@ namespace Airport1
 {
     class MainClass
     {
-        public static bool firstLoop = true;
-        public static bool stayAtProgram = true;
-        public static object[,] airport = new object[5, 10]; 
-        public static string[] lengPartOfTable = new string[10];
-        public static int countOfFlight = 0;
+        private static bool firstLoop = true;
+        private static bool stayAtProgram = true;
+        private static object[,] airport = new object[5, 10]; 
+        private static string[] lengPartOfTable = new string[10];
+        private static string[] flightStatus;
+        private static int countOfFlight = 0;
         private static DateTime arrivalDate;
         private static DateTime depurtureDate;
 
         public static void Main(string[] args)
         {
-            DateTime arrival1 = new DateTime(12,12,12,7,0,0);
-            DateTime depurture1 = new DateTime(12,12,12,9,0,0);
+            DateTime arrival1 = new DateTime(2020,07,04,20,0,0);
+            DateTime depurture1 = new DateTime(2020,07,05,0,0,0);
 
-            DateTime arrival2 = new DateTime(2020, 12, 22, 10, 0, 0);
-            DateTime depurture2 = new DateTime(2020, 12, 22, 12, 0, 0);
+            DateTime arrival2 = new DateTime(2020, 07, 04, 21, 0, 0);
+            DateTime depurture2 = new DateTime(2020, 07, 04, 23, 0, 0);
 
-            object[] nameOfPart = {"Flight number", "Arrival date and time", "Departure date and time","City/port of arrival",
-                "City/port of depurture","Airline","Terminal","Status","Gate"};
-            object[] plane1 = new object[] { "0982", arrival1, depurture1, "Kyiv", "Lviv", "MAU", "C", "", 2 };
-            object[] plane2 = new object[] { "3029", arrival2, depurture2, "Lviv", "London", "MAU", "A", "", 4 };
+            DateTime arrival3 = new DateTime(2020, 07, 04, 16, 0, 0);
+            DateTime depurture3 = new DateTime(2020, 07, 04, 18, 0, 0);
+
+            flightStatus = new string[9] { "Gate closed", "Expected", "Chec-in", "Departed", "In flight", "Arrived", "Delayed", "Unnown", "Canceled" };
+            object[] nameOfPart = {"Flight number", "Depurture date and time", "Arrival date and time","City/port of depurture",
+                "City/port of arrival","Airline","Terminal","Status","Gate"};
+            object[] plane1 = { "0982", arrival1, depurture1, "Kyiv", "Lviv", "MAU", "C", "", 2 };
+            object[] plane2 = { "3029", arrival2, depurture2, "Lviv", "London", "MAU", "A", "", 4 };
+            object[] plane3 = { "3029", arrival3, depurture3, "London", "Moscow", "MAU", "E", "", 3 };
 
             AddFlight(nameOfPart);
-            AddFlight(plane1);
             AddFlight(plane2);
+            AddFlight(plane1);
+            AddFlight(plane3);
 
             while (stayAtProgram)
             {
@@ -40,48 +47,42 @@ namespace Airport1
                     Console.WriteLine("Choise somesing");
                 }
                 Console.WriteLine($"1.Add new flight\n2.Remove flight\n3.Editing information\n4.Search by data\n" +
-                    $"5.Upcoming flights\n6.Give all information about flight\n7.Emergency\n8.Exit\n");
+                    $"5.Upcoming flights\n6.Give all information about flight\n7.Emergency\n8.Get automatic status\n9.Exit\n");
 
                 var choise = Console.ReadLine();
-                
                 firstLoop = false;
+                Console.Clear();
 
                 switch (choise)
                 {
-                    case ("1"):
-                        Console.Clear();
+                    case "1":
                         AddFlight();
                         break;
-                    case ("2"):
-                        Console.Clear();
+                    case "2":
                         RemoveFlight();
                         break;
-                    case ("3"):
-                        Console.Clear();
+                    case "3":
                         EditingInformation();
                         break;
-                    case ("4"):
-                        Console.Clear();
+                    case "4":
                         SearchByData();
                         break;
-                    case ("5"):
-                        Console.Clear();
+                    case "5":
                         UpcomingFlight();
                         break;
-                    case ("6"):
-                        Console.Clear();
+                    case "6":
                         GiveAllInformation();
                         break;
-                    case ("7"):
-                        Console.Clear();
+                    case "7":
                         Emergency();
                         break;
-                    case ("8"):
-                        Console.Clear();
+                    case "8":
+                        FlightStatus();
+                        break;
+                    case "9":
                         stayAtProgram = false;
                         break;
                     default:
-                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Pelase, choose one operation\n");
                         Console.ResetColor();
@@ -97,11 +98,20 @@ namespace Airport1
             string raseNum = Console.ReadLine();
             try
             {
+                Console.Write("Input depurture date (DD.MM.YYYY HH:MM:mm):");
+                depurtureDate = DateTime.Parse(Console.ReadLine());
+
                 Console.Write("Input arrival date (DD.MM.YYYY HH:MM:mm):");
                 arrivalDate = DateTime.Parse(Console.ReadLine());
 
-                Console.Write("Input depurture date (DD.MM.YYYY HH:MM:mm):");
-                depurtureDate = DateTime.Parse(Console.ReadLine());
+                if (depurtureDate >= arrivalDate)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Departure cannot be later than arrival");
+                    Console.ResetColor();
+                    AddFlight();
+                    return;
+                }
             }
             catch (Exception)
             {
@@ -112,11 +122,11 @@ namespace Airport1
                 return;
             }
 
-            Console.Write("City/port of arrival:");
-            string arrivalPlace = Console.ReadLine();
-
             Console.Write("City/port of depurture:");
             string depurturePlace = Console.ReadLine();
+
+            Console.Write("City/port of arrival:");
+            string arrivalPlace = Console.ReadLine();
 
             Console.Write("Airlines:");
             string airlines = Console.ReadLine();
@@ -129,10 +139,10 @@ namespace Airport1
 
             airport[countOfFlight, 0] = countOfFlight+1;
             airport[countOfFlight, 1] = raseNum;
-            airport[countOfFlight, 2] = arrivalDate;
-            airport[countOfFlight, 3] = depurtureDate;
-            airport[countOfFlight, 4] = arrivalPlace;
-            airport[countOfFlight, 5] = depurturePlace;
+            airport[countOfFlight, 2] = depurtureDate;
+            airport[countOfFlight, 3] = arrivalDate;
+            airport[countOfFlight, 4] = depurturePlace;
+            airport[countOfFlight, 5] = arrivalPlace;
             airport[countOfFlight, 6] = airlines;
             airport[countOfFlight, 7] = terminal;
             airport[countOfFlight, 8] = "";
@@ -165,7 +175,7 @@ namespace Airport1
             GiveAllInformation();
             Console.Write("Input rase number to remove : ");
             string flyNumber = Console.ReadLine();
-            int raseNum = 0;
+            int raseNum = countOfFlight;
 
             for (int i = 0; i < countOfFlight; i++)
             {
@@ -174,29 +184,58 @@ namespace Airport1
                     raseNum = i;
                 }
             }
-
-            for (int i = 0; i < countOfFlight; i++)
+            if (raseNum != countOfFlight)
             {
-                for (int j = 0; j < airport.GetLength(1); j++)
+                for (int i = 0; i < countOfFlight; i++)
                 {
-                    if (i > raseNum)
+                    for (int j = 0; j < airport.GetLength(1); j++)
                     {
-                        airport[i - 1, j] = airport[i, j];
+                        if (i > raseNum)
+                        {
+                            airport[i - 1, j] = airport[i, j];
+                        }
                     }
                 }
+                countOfFlight--;
             }
-
-            if (raseNum == 0)
+            else
             {
-                Console.WriteLine("Coc");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Wrong input\n");
+                Console.ResetColor();
             }
-            countOfFlight--;
         }
 
         public static void EditingInformation()
         {
-            int plane = SearchByData();
-            if (plane != countOfFlight) {
+            int[] planeArr = SearchByData();
+            int planeArrLen = 0;
+            int plane = 0;
+
+            for (int i = 0; i < planeArr.Length; i++)
+            {
+                if (planeArr[i] != 0)
+                {
+                    planeArrLen++;
+                    plane = planeArr[i];
+                }
+            }
+
+            if (planeArrLen > 1)
+            {
+                Console.Write("\nChoose one of this flight:");
+                string choise = Console.ReadLine();
+                for (int i = 1; i < planeArr.Length; i++)
+                {
+                    if (choise == planeArr[i].ToString() && planeArr[i] != 0)
+                    {
+                        plane = planeArr[i];
+                    }
+                }
+            }
+
+            if (plane != countOfFlight && planeArrLen != 0) {
                 for (int i = 0; i < airport.GetLength(1) - 1; i++)
                 {
                     Console.WriteLine($"{i + 1}.{airport[0, i + 1]}");
@@ -206,14 +245,145 @@ namespace Airport1
                 int choise = int.Parse(Console.ReadLine());
 
                 Console.Write($"Input new {airport[0, choise]}: ");
-                airport[plane, choise] = Console.ReadLine();
+                if (choise == 2)
+                {
+                    DateTime newDateTime = DateTime.Parse(Console.ReadLine());
+                    TimeSpan diferent1 = newDateTime.Subtract((DateTime)airport[plane, choise]);
+
+                    airport[plane, choise] = newDateTime;
+                    airport[plane, choise + 1] = ((DateTime)airport[plane, choise + 1]).Add(diferent1);
+                }
+                else if (choise == 3)
+                {
+
+                }
+                else if (choise == 8)
+                {
+                    Console.WriteLine("Choose one of status:");
+                    for (int i = 0; i < flightStatus.Length; i++)
+                    {
+                        Console.WriteLine($"{i + 1}.{flightStatus[i]}");
+                    }
+
+                    string choiseStatus = Console.ReadLine();
+                    switch (choiseStatus)
+                    {
+                        case "1":
+                            airport[plane, choise] = flightStatus[0];
+                            break;
+                        case "2":
+                            airport[plane, choise] = flightStatus[1];
+                            break;
+                        case "3":
+                            airport[plane, choise] = flightStatus[2];
+                            break;
+                        case "4":
+                            airport[plane, choise] = flightStatus[3];
+                            break;
+                        case "5":
+                            airport[plane, choise] = flightStatus[4];
+                            break;
+                        case "6":
+                            airport[plane, choise] = flightStatus[5];
+                            break;
+                        case "7":
+                            airport[plane, choise] = flightStatus[6];
+                            break;
+                        case "8":
+                            airport[plane, choise] = flightStatus[7];
+                            break;
+                        case "9":
+                            airport[plane, choise] = flightStatus[8];
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Pelase, choose one of status\n");
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+                else
+                {
+                    airport[plane, choise] = Console.ReadLine();
+                }
+
                 Console.Clear();
             }
         }
 
+        public static int[] SearchByData()
+        {
+            Console.WriteLine("Select criteria to refine your search");
+            int crit = DoSomesingBy();
+            Console.Write($"Write {airport[0, crit]}: ");
+            string choise = Console.ReadLine();
+            Console.Clear();
+            bool maches = false;
+            int carrentindex = 0;
+            int[] index = new int[countOfFlight];
+
+            for (int i = 0; i < countOfFlight; i++)
+            {
+                if (airport[i, crit].ToString() == choise || i == 0)
+                {
+                    airport[i, 0] = i;
+                    if (i == 0)
+                    {
+                        PrintLine();
+                    }
+
+                    for (int j = 0; j < airport.GetLength(1); j++)
+                    {
+                        int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
+                        Console.Write($"{airport[i, j]}");
+                        for (int d = 0; d < ostatok; d++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.Write("|");
+                    }
+                    Console.WriteLine("");
+
+                    if (airport[i, crit].ToString() == choise)
+                    {
+                        maches = true;
+                    }
+                    index[carrentindex] = i;
+                    carrentindex++;
+                }
+
+                if (i < 1 || (i == countOfFlight - 1 && maches))
+                {
+                    PrintLine();
+                }
+            }
+
+
+            if (!maches)
+            {
+                Console.WriteLine("No matches");
+            }
+
+            Console.WriteLine("");
+            return index;
+        }
+
         public static void UpcomingFlight()
         {
+            int sortingCount = countOfFlight;
+            DateTime lowDiferent = (DateTime)airport[1,2];
+            DateTime now = DateTime.Now;
 
+            for (int i = 1; i < sortingCount; i++)
+            {
+                for (int j = i; j < sortingCount; j++)
+                {
+                    if ((DateTime)airport[j, 2] < (DateTime)airport[i, 2])
+                    {
+                        SwapPlane(i, j);
+                    }
+                }
+            }
         }
 
         public static void GiveAllInformation()
@@ -251,6 +421,39 @@ namespace Airport1
 
         }
 
+        public static void FlightStatus()
+        {
+            DateTime now = DateTime.Now;
+
+            for (int i = 1; i < countOfFlight; i++)
+            {
+                if (now.AddHours(3) <= (DateTime)airport[i, 2])
+                {
+                    airport[i, 8] = flightStatus[0];
+                }
+                else if (now.AddMinutes(90) <= (DateTime)airport[i, 2])
+                {
+                    airport[i, 8] = flightStatus[1];
+                }
+                else if (now.AddMinutes(15) <= (DateTime)airport[i, 2])
+                {
+                    airport[i, 8] = flightStatus[2];
+                }
+                else if (now.Subtract(new TimeSpan(0, 15, 0)) <= (DateTime)airport[i, 2])
+                {
+                    airport[i, 8] = flightStatus[3];
+                }
+                else if (now <= (DateTime)airport[i, 3])
+                {
+                    airport[i, 8] = flightStatus[4];
+                }
+                else if (now >= (DateTime)airport[i, 3])
+                {
+                    airport[i, 8] = flightStatus[5];
+                }
+            }
+        }
+
 
         public static void PrintLine()
         {
@@ -281,66 +484,10 @@ namespace Airport1
             Console.WriteLine("");
         }
 
-        public static int SearchByData()
-        {
-            Console.WriteLine("Select criteria to refine your search");
-            int crit = DoSomesingBy();
-            Console.Write($"Write {airport[0, crit]}: ");
-            string choise = Console.ReadLine();
-            Console.Clear();
-            bool maches = false;
-            int index = 0;
-
-            for (int i = 0; i < countOfFlight; i++)
-            {
-                if (airport[i, crit].ToString() == choise || i == 0)
-                {
-                    airport[i, 0] = i;
-                    if (i == 0)
-                    {
-                        PrintLine();
-                    }
-
-                    for (int j = 0; j < airport.GetLength(1); j++)
-                    {
-                        int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
-                        Console.Write($"{airport[i, j]}");
-                        for (int d = 0; d < ostatok; d++)
-                        {
-                            Console.Write(" ");
-                        }
-                        Console.Write("|");
-                    }
-                    Console.WriteLine("");
-
-                    if (airport[i, crit].ToString() == choise)
-                    {
-                        maches = true;
-                    }
-                    index = i;
-                }
-
-                if (i < 1 || (i == countOfFlight - 1 && maches))
-                {
-                    PrintLine();
-                }
-            }
-
-
-            if (!maches)
-            {
-                Console.WriteLine("No matches");
-                index = countOfFlight;
-            }
-
-            Console.WriteLine("");
-            return index;
-        }
-
         public static int DoSomesingBy()
         {
             int raseNum = 0;
-            Console.WriteLine($"1.By rase number \n2.By arrival date \n3.By depurture date \n4.By city/port of arrival\n" +
+            Console.WriteLine($"1.By rase number \n2.By arrival date (DD.MM.YYYY HH:MM:mm)\n3.By depurture date (DD.MM.YYYY HH:MM:mm)\n4.By city/port of arrival\n" +
                     $"5.By city/port of depurture \n6.By airline \n7.By terminal \n8.By flight status \n9.By gate\n");
             string choise = Console.ReadLine();
             if (int.TryParse(choise, out int choiseInt))
@@ -351,7 +498,11 @@ namespace Airport1
                 }
                 else
                 {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Choose one of operation");
+                    Console.ResetColor();
+                    return DoSomesingBy();
                 }
             }
             else
@@ -359,6 +510,17 @@ namespace Airport1
                 Console.WriteLine("Write number");
             }
             return raseNum;
+        }
+
+        public static void SwapPlane(int i, int j)
+        {
+            object swapObject;
+            for (int z = 0; z < airport.GetLength(1); z++)
+            {
+                swapObject = airport[j, z];
+                airport[j, z] = airport[i, z];
+                airport[i, z] = swapObject;
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{F2778082-B284-42B5-89C2-D9C4D3954D0D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Lab6/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Lab6/LibrariUser.cs">
     <Files>
       <File FileName="Lab6/Program.cs" Line="116" Column="56" />
       <File FileName="Lab6/LibrariUser.cs" Line="8" Column="32" />
@@ -10,7 +10,7 @@
         <State name="__root__">
           <Node name="Lab6" expanded="True">
             <Node name="Lab6" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="LibrariUser.cs" selected="True" />
             </Node>
           </Node>
         </State>

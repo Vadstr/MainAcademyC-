@@ -4,3 +4,9 @@
 /Users/vadim/Desktop/MainAcademyC-/Airport1/obj/Debug/Airport1.csproj.CoreCompileInputs.cache
 /Users/vadim/Desktop/MainAcademyC-/Airport1/obj/Debug/Airport1.exe
 /Users/vadim/Desktop/MainAcademyC-/Airport1/obj/Debug/Airport1.pdb
+/Users/vadim/Desktop/MainAcademyC-/AirportPanel/bin/Debug/Airport1.exe
+/Users/vadim/Desktop/MainAcademyC-/AirportPanel/bin/Debug/Airport1.pdb
+/Users/vadim/Desktop/MainAcademyC-/AirportPanel/obj/Debug/Airport1.csprojAssemblyReference.cache
+/Users/vadim/Desktop/MainAcademyC-/AirportPanel/obj/Debug/Airport1.csproj.CoreCompileInputs.cache
+/Users/vadim/Desktop/MainAcademyC-/AirportPanel/obj/Debug/Airport1.exe
+/Users/vadim/Desktop/MainAcademyC-/AirportPanel/obj/Debug/Airport1.pdb
