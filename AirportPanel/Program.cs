@@ -4,17 +4,22 @@ namespace Airport1
 {
     class MainClass
     {
+        private static object[,] airport;
+
         private static bool firstLoop = true;
         private static bool stayAtProgram = true;
-        private static object[,] airport = new object[5, 10]; 
+        private static bool[] emergencyStatus = new bool[3];
+
         private static string[] lengPartOfTable = new string[10];
         private static string[] flightStatus;
+        private static string[] emergency;
+
+        private static int maxCountOfFlight = 5;
         private static int countOfFlight = 0;
+        private static int raseNum;
+
         private static DateTime arrivalDate;
         private static DateTime depurtureDate;
-        private static int raseNum;
-        private static bool[] emergencyStatus = new bool[3];
-        private static string[] emergency;
 
         public static void Main(string[] args)
         {
@@ -29,12 +34,13 @@ namespace Airport1
             DateTime arrival3 = DateTime.Now.AddMinutes(25);
             DateTime depurture3 = arrival3.AddHours(3.5);
 
+            airport = new object[maxCountOfFlight,10];
             flightStatus = new string[9] { "Gate closed", "Expected", "Chec-in", "Departed", "In flight", "Arrived", "Delayed", "Unnown", "Canceled" };
             object[] nameOfPart = {"Flight number", "Depurture date and time", "Arrival date and time","City/port of depurture",
                 "City/port of arrival","Airline","Terminal","Status","Gate"};
             object[] plane1 = { "0982", arrival1, depurture1, "Kyiv", "Lviv", "MAU", "C", "", 2 };
             object[] plane2 = { "3029", arrival2, depurture2, "Lviv", "London", "MAU", "A", "", 4 };
-            object[] plane3 = { "3029", arrival3, depurture3, "London", "Moscow", "MAU", "E", "", 3 };
+            object[] plane3 = { "1046", arrival3, depurture3, "London", "Moscow", "MAU", "E", "", 3 };
 
             AddFlight(nameOfPart);
             AddFlight(plane2);
@@ -43,6 +49,12 @@ namespace Airport1
 
             while (stayAtProgram)
             {
+                if (countOfFlight == maxCountOfFlight)
+                {
+                    maxCountOfFlight += 5;
+                    airport = ExpandArray(airport);
+                }
+
                 for (int i = 0; i < emergencyStatus.Length; i++)
                 {
                     if (emergencyStatus[i])
@@ -113,6 +125,18 @@ namespace Airport1
             {
                 Console.Write("Input flight information \nInput rase number:");
                 raseNum = int.Parse(Console.ReadLine());
+
+                for (int i = 0; i < countOfFlight; i++)
+                {
+                    if (airport[i, 1].ToString() == raseNum.ToString())
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Such flight number is already registered");
+                        Console.ResetColor();
+                        AddFlight();
+                        return;
+                    }
+                }
             }
             catch
             {
@@ -606,6 +630,21 @@ namespace Airport1
                 airport[j, z] = airport[i, z];
                 airport[i, z] = swapObject;
             }
+        }
+
+        public static object[,] ExpandArray(object[,] airport)
+        {
+            object[,] newAirport = new object[maxCountOfFlight,10];
+
+            for (int i = 0; i < countOfFlight; i++)
+            {
+                for(int j = 0; j < airport.GetLength(1); j++)
+                {
+                    newAirport[i, j] = airport[i, j];
+                }
+            }
+
+            return newAirport;
         }
     }
 }
