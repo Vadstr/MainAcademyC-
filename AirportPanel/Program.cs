@@ -12,17 +12,22 @@ namespace Airport1
         private static int countOfFlight = 0;
         private static DateTime arrivalDate;
         private static DateTime depurtureDate;
+        private static int raseNum;
+        private static bool[] emergencyStatus = new bool[3];
+        private static string[] emergency;
 
         public static void Main(string[] args)
         {
-            DateTime arrival1 = new DateTime(2020,07,04,20,0,0);
-            DateTime depurture1 = new DateTime(2020,07,05,0,0,0);
+            emergency = new string[3] { "Fire! Evacuation", "Bomb! Evacuation", "Gas! Evacuation" };
 
-            DateTime arrival2 = new DateTime(2020, 07, 04, 21, 0, 0);
-            DateTime depurture2 = new DateTime(2020, 07, 04, 23, 0, 0);
+            DateTime arrival1 = DateTime.Now.Subtract(new TimeSpan(2, 0, 0));
+            DateTime depurture1 = arrival1.AddHours(2);
 
-            DateTime arrival3 = new DateTime(2020, 07, 04, 16, 0, 0);
-            DateTime depurture3 = new DateTime(2020, 07, 04, 18, 0, 0);
+            DateTime arrival2 = DateTime.Now.AddHours(1);
+            DateTime depurture2 = arrival2.AddHours(3);
+
+            DateTime arrival3 = DateTime.Now.AddMinutes(15);
+            DateTime depurture3 = arrival3.AddHours(3.5);
 
             flightStatus = new string[9] { "Gate closed", "Expected", "Chec-in", "Departed", "In flight", "Arrived", "Delayed", "Unnown", "Canceled" };
             object[] nameOfPart = {"Flight number", "Depurture date and time", "Arrival date and time","City/port of depurture",
@@ -38,6 +43,16 @@ namespace Airport1
 
             while (stayAtProgram)
             {
+                for (int i = 0; i < emergencyStatus.Length; i++)
+                {
+                    if (emergencyStatus[i])
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"{emergency[i]}\n");
+                        Console.ResetColor();
+                    }
+                }
+
                 if (firstLoop)
                 {
                     Console.WriteLine("This is menu, were you can choise what you want to do");
@@ -94,8 +109,20 @@ namespace Airport1
 
         public static void AddFlight()
         {
-            Console.Write("Input flight information \nInput rase number:");
-            string raseNum = Console.ReadLine();
+            try
+            {
+                Console.Write("Input flight information \nInput rase number:");
+                raseNum = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Rase number must be number");
+                Console.ResetColor();
+                AddFlight();
+                return;
+            }
+
             try
             {
                 Console.Write("Input depurture date (DD.MM.YYYY HH:MM:mm):");
@@ -384,6 +411,10 @@ namespace Airport1
                     }
                 }
             }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Information sort by depurture time:");
+            Console.ResetColor();
+            GiveAllInformation();
         }
 
         public static void GiveAllInformation()
@@ -418,7 +449,26 @@ namespace Airport1
 
         public static void Emergency()
         {
-
+            for (int i = 0; i < emergency.Length; i++)
+            {
+                Console.WriteLine($"{i+1}.{emergency[i]}\n");
+            }
+            Console.Write("Сhoose what you need: ");
+            try
+            {
+                int choise = int.Parse(Console.ReadLine());
+                emergencyStatus[choise - 1] = !emergencyStatus[choise - 1];
+                Console.WriteLine();
+                Console.Clear();
+            }
+            catch
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Pelase, choose one of operation\n");
+                Console.ResetColor();
+                Emergency();
+            }
         }
 
         public static void FlightStatus()
