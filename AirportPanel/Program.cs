@@ -23,10 +23,10 @@ namespace Airport1
             DateTime arrival1 = DateTime.Now.Subtract(new TimeSpan(2, 0, 0));
             DateTime depurture1 = arrival1.AddHours(2);
 
-            DateTime arrival2 = DateTime.Now.AddHours(1);
+            DateTime arrival2 = DateTime.Now.AddHours(3);
             DateTime depurture2 = arrival2.AddHours(3);
 
-            DateTime arrival3 = DateTime.Now.AddMinutes(15);
+            DateTime arrival3 = DateTime.Now.AddMinutes(25);
             DateTime depurture3 = arrival3.AddHours(3.5);
 
             flightStatus = new string[9] { "Gate closed", "Expected", "Chec-in", "Departed", "In flight", "Arrived", "Delayed", "Unnown", "Canceled" };
@@ -414,7 +414,42 @@ namespace Airport1
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Information sort by depurture time:");
             Console.ResetColor();
-            GiveAllInformation();
+            for (int i = 0; i < countOfFlight; i++)
+            {
+                bool printPlane;
+                airport[i, 0] = i;
+                if (i == 0)
+                {
+                    printPlane = true;
+                    PrintLine();
+                }
+                else
+                {
+                    printPlane = (DateTime)airport[i, 2] > DateTime.Now;
+                }
+
+                if (printPlane)
+                {
+                    for (int j = 0; j < airport.GetLength(1); j++)
+                    {
+                        int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
+                        Console.Write($"{airport[i, j]}");
+                        for (int d = 0; d < ostatok; d++)
+                        {
+                            Console.Write(" ");
+                        }
+                        Console.Write("|");
+                    }
+
+                    Console.WriteLine("");
+
+                    if (i < 1 || i == countOfFlight - 1)
+                    {
+                        PrintLine();
+                    }
+                }
+            }
+            Console.WriteLine("");
         }
 
         public static void GiveAllInformation()
