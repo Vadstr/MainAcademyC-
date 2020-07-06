@@ -385,13 +385,7 @@ namespace Airport1
 
                     for (int j = 0; j < airport.GetLength(1); j++)
                     {
-                        int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
-                        Console.Write($"{airport[i, j]}");
-                        for (int d = 0; d < ostatok; d++)
-                        {
-                            Console.Write(" ");
-                        }
-                        Console.Write("|");
+                        PrintFlight(i, j);
                     }
                     Console.WriteLine("");
 
@@ -456,13 +450,7 @@ namespace Airport1
                 {
                     for (int j = 0; j < airport.GetLength(1); j++)
                     {
-                        int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
-                        Console.Write($"{airport[i, j]}");
-                        for (int d = 0; d < ostatok; d++)
-                        {
-                            Console.Write(" ");
-                        }
-                        Console.Write("|");
+                        PrintFlight(i, j);
                     }
 
                     Console.WriteLine("");
@@ -488,13 +476,7 @@ namespace Airport1
 
                 for (int j = 0; j < airport.GetLength(1); j++)
                 {
-                    int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
-                    Console.Write($"{airport[i, j]}");
-                    for (int d = 0; d < ostatok; d++)
-                    {
-                        Console.Write(" ");
-                    }
-                    Console.Write("|");
+                    PrintFlight(i, j);
                 }
                 Console.WriteLine("");
 
@@ -645,6 +627,17 @@ namespace Airport1
             }
 
             return newAirport;
+        }
+
+        public static void PrintFlight(int i,int j)
+        {
+            int ostatok = int.Parse(lengPartOfTable[j]) - airport[i, j].ToString().Length;
+            Console.Write($"{airport[i, j]}");
+            for (int d = 0; d < ostatok; d++)
+            {
+                Console.Write(" ");
+            }
+            Console.Write("|");
         }
     }
 }
